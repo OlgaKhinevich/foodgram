@@ -1,16 +1,15 @@
-from rest_framework import viewsets
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.decorators import action
-from djoser.serializers import SetPasswordSerializer
-from rest_framework.permissions import IsAuthenticated
-from api.pagination import ApiPagination
 from django.shortcuts import get_object_or_404
+from djoser.serializers import SetPasswordSerializer
+from rest_framework import status, viewsets
+from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
+from api.pagination import ApiPagination
+from api.permissions import IsCurrentUserOrAdminOrReadOnly
 from recipes.models import Follow
 from users.models import User
 from users.serializers import FollowSerializer, UserSerializer
-from api.permissions import IsCurrentUserOrAdminOrReadOnly
 
 
 class UserViewSet(viewsets.ModelViewSet):

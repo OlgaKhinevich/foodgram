@@ -1,22 +1,19 @@
-from rest_framework import viewsets
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework import mixins
-from rest_framework.permissions import AllowAny
-from rest_framework.decorators import action
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
 from django.shortcuts import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import mixins, status, viewsets
+from rest_framework.decorators import action
+from rest_framework.permissions import SAFE_METHODS, AllowAny, IsAuthenticated
+from rest_framework.response import Response
 
-from recipes.models import (Recipe, Tag, Ingredient,
-                            Favorite, ShoppingCart, User)
-from api.serializers import (RecipeListSerializer, TagSerializer,
-                             IngredientSerializer, FavoriteSerializer,
-                             ShoppingCartSerializer, RecipeWriteSerializer)
-from api.services import shopping_cart
-from api.permissions import IsOwnerOrAdminOrReadOnly
 from api.filters import IngredientSearchFilter, RecipeFilter
 from api.pagination import ApiPagination
+from api.permissions import IsOwnerOrAdminOrReadOnly
+from api.serializers import (FavoriteSerializer, IngredientSerializer,
+                             RecipeListSerializer, RecipeWriteSerializer,
+                             ShoppingCartSerializer, TagSerializer)
+from api.services import shopping_cart
+from recipes.models import (Favorite, Ingredient, Recipe, ShoppingCart, Tag,
+                            User)
 
 
 class TagViewSet(mixins.ListModelMixin,

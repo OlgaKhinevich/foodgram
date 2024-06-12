@@ -1,10 +1,9 @@
-from rest_framework import serializers
-from rest_framework import status
+from rest_framework import serializers, status
 from rest_framework.exceptions import ValidationError
 
+import api.serializers
 from recipes.models import Follow, Recipe
 from users.models import User
-import api.serializers
 
 
 class UserSerializer(serializers.ModelSerializer):
