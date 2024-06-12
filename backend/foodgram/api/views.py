@@ -20,6 +20,7 @@ class TagViewSet(mixins.ListModelMixin,
                  mixins.RetrieveModelMixin,
                  viewsets.GenericViewSet):
     """Функция для модели тегов."""
+
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
     permission_classes = (AllowAny, )
@@ -29,6 +30,7 @@ class IngredientViewSet(mixins.ListModelMixin,
                         mixins.RetrieveModelMixin,
                         viewsets.GenericViewSet):
     """Функция для модели ингредиентов."""
+
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
     permission_classes = (AllowAny, )
@@ -38,6 +40,7 @@ class IngredientViewSet(mixins.ListModelMixin,
 
 class RecipeViewSet(viewsets.ModelViewSet):
     """Вьюсет модели Recipe: [GET, POST, DELETE, PATCH]."""
+
     queryset = Recipe.objects.all()
     permission_classes = (IsOwnerOrAdminOrReadOnly, )
     filter_backends = (DjangoFilterBackend, )

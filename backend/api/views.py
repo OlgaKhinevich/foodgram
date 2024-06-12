@@ -257,7 +257,6 @@ class CustomUserViewSet(UserViewSet):
     @change_avatar.mapping.delete
     def delete_avatar(self, request):
         """Метод для удаления аватарки пользователя"""
-
         avatar = self.request.user
         serializer = AvatarSerializer(avatar, data=request.data)
         serializer.is_valid(raise_exception=True)
