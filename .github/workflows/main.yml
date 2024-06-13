@@ -113,7 +113,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        passphrase: ${{ secrets.PASSPHRASE }}
         source: "docker-compose.production.yml"
         target: "foodgram"
     - name: Executing remote ssh commands to deploy
@@ -122,7 +122,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        passphrase: ${{ secrets.PASSPHRASE }}
         script: |
           cd foodgram
           # Выполняет pull образов с Docker Hub
