@@ -31,7 +31,7 @@ services:
   nginx:
     image: olgakhinevich/foodgram_proxy:latest
     ports:
-      - 8080:80
+      - 9001:80
     volumes:
       - ../frontend/build:/usr/share/nginx/html/
       - ../docs/:/usr/share/nginx/html/api/docs/
