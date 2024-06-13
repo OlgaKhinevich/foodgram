@@ -7,16 +7,14 @@ volumes:
   redoc:
 
 services:
-
   db:
-    container_name: foodgram-postgresql
     image: postgres:13.10
     env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
   
   backend:
-    image: olgakhinevich/foodgram_backend:latest
+    image: olgakhinevich/foodgram_backend
     env_file: .env
     volumes:
       - static:/var/html/back_static/
@@ -25,11 +23,13 @@ services:
       - db
 
   frontend:
-    image: olgakhinevich/foodgram_frontend:latest
+    image: olgakhinevich/foodgram_frontend
     volumes:
       - ../frontend/:/app/result_build/
+
   nginx:
-    image: olgakhinevich/foodgram_proxy:latest
+    image: olgakhinevich/foodgram_proxy
+    env_file: .env
     ports:
       - 9001:80
     volumes:
