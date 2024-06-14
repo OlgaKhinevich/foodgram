@@ -31,7 +31,7 @@ services:
     image: olgakhinevich/foodgram_proxy
     env_file: .env
     ports:
-      - 9001:80
+      - 8000:80
     volumes:
       - ../frontend/build:/usr/share/nginx/html/
       - ../docs/:/usr/share/nginx/html/api/docs/
