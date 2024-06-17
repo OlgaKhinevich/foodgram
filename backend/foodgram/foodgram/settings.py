@@ -15,7 +15,7 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', default='*').split(',')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-CSRF_TRUSTED_ORIGINS = [os.getenv('DOMEN', default='http://foodgram-olga.duckdns.org/')]
+CSRF_TRUSTED_ORIGINS = ['http://foodgram-olga.duckdns.org/']
 
 # Application definition
 
