@@ -11,12 +11,12 @@ SECRET_KEY = os.getenv('SECRET_KEY', default='token')
 
 DEBUG = os.getenv('DEBUG', default='False') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', default='*').split(',')
+ALLOWED_HOSTS = ['foodgram-olga.duckdns.org']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-CSRF_TRUSTED_ORIGINS = ['https://foodgram-olga.duckdns.org', 'http://localhost:8000']
-CSRF_COOKIE_SECURE = True
+# CSRF_TRUSTED_ORIGINS = ['https://foodgram-olga.duckdns.org', 'http://localhost:8000']
+# CSRF_COOKIE_SECURE = True
 
 
 # Application definition
