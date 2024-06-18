@@ -14,7 +14,7 @@ services:
       - pg_data:/var/lib/postgresql/data
   
   backend:
-    image: ${DOCKER_USERNAME}/foodgram_backend
+    image: ${DOCKER_USERNAME}/foodgram_backend:latest
     env_file: .env
     volumes:
       - static:/var/html/back_static/
@@ -23,12 +23,12 @@ services:
       - db
 
   frontend:
-    image: ${DOCKER_USERNAME}/foodgram_frontend
+    image: ${DOCKER_USERNAME}/foodgram_frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
 
   nginx:
-    image: ${DOCKER_USERNAME}/foodgram_proxy
+    image: ${DOCKER_USERNAME}/foodgram_proxy:latest
     env_file: .env
     ports:
       - 8000:80
