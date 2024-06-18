@@ -11,6 +11,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', default='token')
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1, localhost').split(',')
 
+DEBUG = os.getenv('DEBUG', default='False') == 'True'
+
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', 'http://127.0.0.1, http://localhost').split(',')
 
 CSRF_COOKIE_SECURE = True
