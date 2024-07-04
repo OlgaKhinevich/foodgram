@@ -1,6 +1,10 @@
 FROM python:3.9
 
+FROM python:3.9
+
 WORKDIR /app
+
+RUN pip install gunicorn==20.1.0 
 
 COPY requirements.txt .
 

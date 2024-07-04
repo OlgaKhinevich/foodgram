@@ -14,12 +14,16 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='recipe',
             name='image',
-            field=models.ImageField(blank=True, upload_to='recipe_images', verbose_name='Картинка рецепта'),
+            field=models.ImageField(blank=True,
+                                    upload_to='recipe_images',
+                                    verbose_name='Картинка рецепта'),
         ),
         migrations.AlterField(
             model_name='recipe',
             name='ingredients',
-            field=models.ManyToManyField(through='recipes.IngredientInRecipe', to='recipes.ingredient', verbose_name='Ингредиенты для рецепта'),
+            field=models.ManyToManyField(through='recipes.IngredientInRecipe',
+                                         to='recipes.ingredient',
+                                         verbose_name='Ингредиенты для рецепта'),
         ),
         migrations.CreateModel(
             name='RecipeTag',
