@@ -4,8 +4,18 @@ from recipes.models import (Favorite, Ingredient, IngredientInRecipe, Recipe,
                             ShoppingCart, ShortLink, Tag)
 
 
-class IngredientInRecipeInline(admin.TabularInline):
+class MinValidatedInlineMixIn:
+    validate_min = True
+
+    def get_formset(self, *args, **kwargs):
+        return super().get_formset(validate_min=self.validate_min, *args,
+                                   **kwargs)
+
+
+class IngredientInRecipeInline(MinValidatedInlineMixIn, admin.TabularInline):
     model = Recipe.ingredients.through
+    min_num = 1
+    validate_min = True
     extra = 3
 
 

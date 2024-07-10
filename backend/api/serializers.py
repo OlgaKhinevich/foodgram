@@ -32,7 +32,7 @@ class CustomUserCreateSerializer(UserCreateSerializer):
             'password'
         )
 
-        extra_kwargs = {"password": {"write_only": True}}
+        extra_kwargs = {'password': {'write_only': True}}
 
 
 class CustomUserSerializer(UserSerializer):
@@ -64,7 +64,8 @@ class SubscribeSerializer(CustomUserSerializer):
     """Сериализатор для добавления/удаления подписки, просмотра подписок."""
 
     recipes = SerializerMethodField(read_only=True)
-    recipes_count = SerializerMethodField(read_only=True)
+    recipes_count = serializers.IntegerField(source='recipes.count',
+                                             read_only=True)
 
     class Meta(CustomUserSerializer.Meta):
         fields = CustomUserSerializer.Meta.fields + (
@@ -94,9 +95,6 @@ class SubscribeSerializer(CustomUserSerializer):
             recipes = recipes[:int(recipes_limit)]
         serializer = RecipeInfoSerializer(recipes, context=context, many=True)
         return serializer.data
-
-    def get_recipes_count(self, obj):
-        return obj.recipes.count()
 
 
 class AvatarSerializer(CustomUserSerializer):
@@ -173,10 +171,10 @@ class RecipeSerializer(serializers.ModelSerializer):
                   'name', 'image', 'text', 'cooking_time')
 
     def validate(self, data):
-        ingredients = data.get("ingredients")
+        ingredients = data.get('ingredients')
         if not ingredients:
             raise ValidationError(INGREDIENTS_FIELD_EMPTY)
-        tags = data.get("tags")
+        tags = data.get('tags')
         if not tags:
             raise ValidationError(TAGS_FIELD_EMPTY)
         if data['cooking_time'] < COOKING_TIME_MIN_VALUE:

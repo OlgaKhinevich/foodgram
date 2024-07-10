@@ -1,4 +1,5 @@
 from django.core.validators import MinValueValidator
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import UniqueConstraint
 from django.urls import reverse
@@ -7,7 +8,7 @@ from users.models import User
 
 
 class Tag(models.Model):
-    """ Модель 'Тег' """
+    """Модель 'Тег'."""
 
     name = models.CharField(
         max_length=32,
@@ -29,7 +30,7 @@ class Tag(models.Model):
 
 
 class Ingredient(models.Model):
-    """ Модель 'Ингредиент' """
+    """Модель 'Ингредиент'."""
 
     name = models.CharField(
         max_length=128,
@@ -49,7 +50,7 @@ class Ingredient(models.Model):
 
 
 class Recipe(models.Model):
-    """ Модель 'Рецепт' """
+    """Модель 'Рецепт'."""
 
     author = models.ForeignKey(
         User,
@@ -101,7 +102,7 @@ class Recipe(models.Model):
 
 
 class IngredientInRecipe(models.Model):
-    """ Модель количества нгредиента в рецепте """
+    """Модель количества ингредиента в рецепте."""
 
     recipe = models.ForeignKey(
         Recipe,
@@ -115,10 +116,7 @@ class IngredientInRecipe(models.Model):
         verbose_name='Ингредиент',
     )
     amount = models.PositiveSmallIntegerField(
-        validators=(MinValueValidator(
-            limit_value=0.01,
-            message='Минимальное количество 1!'),
-        ),
+        validators=[MinValueValidator(1, message='Минимальное количество 1!')],
         verbose_name='Количество',
     )
 
@@ -140,7 +138,7 @@ class IngredientInRecipe(models.Model):
 
 
 class Favorite(models.Model):
-    """ Модель 'Избранное' """
+    """Модель 'Избранное'."""
 
     user = models.ForeignKey(
         User,
@@ -170,7 +168,7 @@ class Favorite(models.Model):
 
 
 class ShoppingCart(models.Model):
-    """ Модель 'Список покупок' """
+    """Модель 'Список покупок'."""
 
     user = models.ForeignKey(
         User,
@@ -200,7 +198,7 @@ class ShoppingCart(models.Model):
 
 
 class ShortLink(models.Model):
-    """ Модель 'Короткая ссылка' """
+    """Модель 'Короткая ссылка'."""
 
     original_url = models.URLField(
         max_length=256,
