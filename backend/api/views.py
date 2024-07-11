@@ -26,8 +26,8 @@ from api.serializers import (AvatarSerializer, CustomUserSerializer,
                              ShortLinkSerializer, SubscribeSerializer,
                              TagSerializer)
 from api.utils import download_shopping_cart
-from recipes.models import (Favorite, Ingredient, Recipe,
-                            ShoppingCart, ShortLink, Tag)
+from recipes.models import (Favorite, Ingredient, Recipe, ShoppingCart,
+                            ShortLink, Tag)
 from users.models import Subscribe
 
 
