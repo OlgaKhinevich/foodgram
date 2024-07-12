@@ -32,7 +32,7 @@ class IngredientAdmin(admin.ModelAdmin):
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'author',)
+    list_display = ('name', 'author', 'favorites')
     list_filter = ('tags',)
     search_fields = ('name', 'author__username',)
     readonly_fields = ('favorites',)
